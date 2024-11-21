@@ -31,7 +31,7 @@ Open the terminal and write the following commands
 - `npm install`
 - `node index.js`
 
-This will run the server on the local and you will see MySQL Connected...
+This will run the server on the local and you will see Connected to MySQL database.
 
 
 ### Step-4
