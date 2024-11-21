@@ -4,19 +4,21 @@ const cors = require("cors");
 const mysql = require("mysql2");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const dotenv = require('dotenv');
 
 const app = express();
+dotenv.config();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // MySQL connection
 const db = mysql.createConnection({
-  host: "127.0.0.1",
-  user: "root",
-  password: "tiger",
-  database: "altitude_air",
-  port: 3307,
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT,
 });
 
 db.connect((err) => {
@@ -27,7 +29,7 @@ db.connect((err) => {
   console.log("Connected to MySQL database.");
 });
 
-const JWT_SECRET = "your_jwt_secret_key";
+const JWT_SECRET = process.env.JWT_SECRET;
 
 const verifyToken = (req, res, next) => {
   // Get the token from the Authorization header
